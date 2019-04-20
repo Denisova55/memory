@@ -1,0 +1,16 @@
+{% extends 'mysite/base_page.html' %}
+
+{% block title %}
+    Post
+{% endblock %}
+
+
+
+{% block content %}
+<h1 class="mb-5">{{post}}</h1>
+
+<p>Author: {{post.name}} {{post.second_name}}</p>
+<p>{{post.text_post_markdown|safe}}</p>
+<p>Создано: {{post.date_pub}}</p>
+<p>Последнее редактирование: {{post.date_modified}}</p>
+{% endblock %}

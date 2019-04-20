@@ -1,0 +1,49 @@
+{% extends 'mysite/base_page.html' %}
+
+{% block title %}
+    New Post
+{% endblock %}
+
+
+
+{% block content %}
+
+<h1>Create new Post</h1>
+<form action="." method="POST" class="post-form">
+ {% csrf_token %}
+    {{ post_form.errors }}
+    <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput1">Name</label>
+    <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Name">
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput2">Second Name</label>
+    <input name="title" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Second name">
+  </div>
+ <div class="form-group">
+    <label for="exampleFormControlInput3">Title</label>
+    <input name="title" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Name post">
+  </div>
+ <div class="form-group">
+    <label for="exampleFormControlTextarea1">Preview</label>
+    <textarea name="preview" class="form-control" id="exampleFormControlTextarea1" rows="3"
+              placeholder="Preview"></textarea>
+  </div>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea2">Text Post</label>
+    <textarea name="text_post" class="form-control" id="exampleFormControlTextarea2" rows="3"
+              placeholder="Text post"></textarea>
+    </div>
+    <div class="form-group">
+    <label for="exampleFormControlInput4">Pictures url</label>
+    <input name="title" type="text" class="form-control" id="exampleFormControlInput4" placeholder="Name post">
+  </div>
+
+    <button type="submit" class="btn btn-dark">Submit</button>
+</form>
+
+{% endblock %}
