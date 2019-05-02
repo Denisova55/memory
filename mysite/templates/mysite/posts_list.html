@@ -22,7 +22,7 @@
         <div class="post__nav">
           <div class="post__addition">
             <span>Автор: {{post.name}} {{post.second_name}}</span></br>
-            <span>Дата: </span>
+            <span>Последнее редактирование: {{ post.date_modified }}</span>
           </div>
           <a class="btnn" href="{% url 'post_detail' post.id%}">Читать</a>
         </div>

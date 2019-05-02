@@ -3,14 +3,16 @@
   border-radius: 6px;
   border: 1px #d6d6d6 solid;
   padding: 15px;
-  width: 100%;
+  width: 90%;
   display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
   margin-bottom: 15px;
 }
 .post__img {
   display: block;
-  min-width: 280px;
-  height: 280px;
+  min-width: 235px;
+  height: 235px;
   margin-right: 15px;
   border: 1px #d6d6d6 solid;
   border-radius: 6px;
@@ -25,16 +27,18 @@
 }
 .post__info {
   display: block;
-  flex: 1 auto;
+  width: auto;
+  flex: 1;
 }
 .post__info h3 {
   color: #4f4f4f;
   margin-bottom: 15px;
+  font-size: 1.4rem;
 }
 .post__prev {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: normal;
-  height: 53%;
+  height: 49%;
   overflow: hidden;
 }
 .post__info hr {
@@ -45,5 +49,12 @@
   justify-content: space-between;
 }
 .post__addition {
+  font-size: .8rem;
   color: #6b6b6b;
+}
+.post__text {
+  font-size: 1.1rem;
+  line-height: normal;
+  color: #6b6b6b;
+  margin-top: 15px;
 }

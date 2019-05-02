@@ -1,16 +1,35 @@
 {% extends 'mysite/base_page.html' %}
+{% load staticfiles %}
 
-{% block title %}
-    Post
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/post.css' %}">
 {% endblock %}
 
-
+{% block title %}
+  Post
+{% endblock %}
 
 {% block content %}
-<h1 class="mb-5">{{post}}</h1>
-
-<p>Author: {{post.name}} {{post.second_name}}</p>
-<p>{{post.text_post_markdown|safe}}</p>
+{% comment %} <h1 class="mb-5">{{post}}</h1>
 <p>Создано: {{post.date_pub}}</p>
-<p>Последнее редактирование: {{post.date_modified}}</p>
+<p>Последнее редактирование: {{post.date_modified}}</p> {% endcomment %}
+<aside class="post">
+  <section class="post__img">
+    <i class="fas fa-user-circle"></i>
+  </section>
+  <section class="post__info">
+    <h3>{{ post }}</h3>
+    <p class="post__prev">{{ post.get_preview }}</p>
+    <hr>
+    <div class="post__nav">
+      <div class="post__addition">
+        <span>Автор: {{post.name}} {{ post.second_name }}</span></br>
+        <span>Последнее редактирование: {{ post.date_modified }}</span>
+      </div>
+    </div>
+  </section>
+  <section class="post__text">
+    {{ post.text_post_markdown }}
+  </section>
+</aside>
 {% endblock %}
