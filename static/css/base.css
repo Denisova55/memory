@@ -1,0 +1,73 @@
+@import url('fonts.css');
+
+:root {
+  --main-bg-color: #64c4b8;
+}
+
+body {
+  background: #f4f4f4;
+  font-family: "MyriadProRegular";
+}
+
+header {
+  width: 100%;
+  background: #35363b;
+}
+
+.menu {
+  display: flex;
+  background: #35363b;
+  height: 55px;
+  width: 70%;
+  justify-content: center;
+  margin: auto;
+}
+
+.menu__logo {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  justify-content: flex-start;
+}
+
+.menu__logo .fas {
+  width: 34px;
+  color: var(--main-bg-color);
+  font-size: 1.7rem;
+  margin-right: 15px;
+}
+.menu__logo h1 {
+  font-weight: bold;
+  margin: 0;
+  font-size: 1.5rem;
+  color: #FFF;
+}
+
+.menu__list {
+  width: 70%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.menu__list li a {
+  color: #dbdbdb;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+.menu__list li:last-child a{
+  margin-right: 0px;
+}
+.menu__list li:last-child {
+  margin-left: auto;
+}
+
+.main-container {
+  width: 70%;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 20px;
+  margin-right: auto; 
+  margin-left: auto;
+}
