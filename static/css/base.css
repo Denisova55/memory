@@ -1,7 +1,7 @@
 @import url('fonts.css');
 
 :root {
-  --main-bg-color: #64c4b8;
+  --izumrud: #64c4b8;
 }
 
 body {
@@ -18,7 +18,7 @@ header {
   display: flex;
   background: #35363b;
   height: 55px;
-  width: 70%;
+  width: 960px;
   justify-content: center;
   margin: auto;
 }
@@ -32,7 +32,7 @@ header {
 
 .menu__logo .fas {
   width: 34px;
-  color: var(--main-bg-color);
+  color: var(--izumrud);
   font-size: 1.7rem;
   margin-right: 15px;
 }
@@ -54,7 +54,7 @@ header {
 .menu__list li a {
   color: #dbdbdb;
   font-size: 1rem;
-  margin-right: 10px;
+  margin-right: 35px;
 }
 .menu__list li:last-child a{
   margin-right: 0px;
@@ -64,10 +64,29 @@ header {
 }
 
 .main-container {
-  width: 70%;
+  width: 960px;
   padding-right: 15px;
   padding-left: 15px;
   padding-top: 20px;
   margin-right: auto; 
   margin-left: auto;
+}
+
+.btnn {
+  display: flex;
+  background: var(--izumrud);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0 16px;
+  justify-content: center;
+  align-items: center;
+  color: #171717;
+  font-weight: bold;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+}
+.btnn:hover {
+  color: #f5f5f5;
+  text-decoration: none;
+  background: #409d93;
 }
