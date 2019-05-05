@@ -6,12 +6,13 @@ from django.urls import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+
 class Post(models.Model):
-    email = models.EmailField(verbose_name="email", db_index=True)
-    name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Имя", db_index=True)
-    second_name = models.CharField(verbose_name="Фамилия", max_length=150, db_index=True)
+    email = models.EmailField(verbose_name="email", db_index=True, blank=True)
+    name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Имя", db_index=True, blank=True)
+    second_name = models.CharField(verbose_name="Фамилия", max_length=150, db_index=True, blank=True)
     title = models.CharField(verbose_name="Заголовок", max_length=500)
-    preview = models.CharField(verbose_name= "Тизер", max_length=500, blank=True ,db_index=True)
+    preview = models.CharField(verbose_name= "Тизер", max_length=500, blank=True, db_index=True)
     text_post = MarkdownxField(verbose_name= "Текст поста", blank=True, db_index=True)
     CHOICE_TO_STAR = (
         (True, 'Пост известной личности'),

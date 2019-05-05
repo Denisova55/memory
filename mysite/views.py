@@ -5,7 +5,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib import auth
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
 
 
 def posts_list(request):
@@ -21,10 +21,12 @@ def posts_list(request):
         posts = paginator.page(paginator.num_pages)
     return render(request, 'mysite/posts_list.html', context={'posts': posts, 'page': page})
 
+
 def post_detail(request, post_id):
     """Страница поста"""
     post = get_object_or_404(Post, id=post_id)
     return render(request, 'mysite/post_detail.html', context={'post': post})
+
 
 def create_new_post(request):
     """Создание нового поста"""
@@ -40,6 +42,7 @@ def create_new_post(request):
     else:
         post_form = PostForm()
         return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
+
 
 def registration(request):
     """Регистрация пользователя"""
@@ -65,6 +68,7 @@ def log_in(request):
         else:
             messages.error(request, 'Error wrong username/password')
     return render(request, 'mysite/log_in.html')
+
 
 def log_out(request):
     """Выход авторизованного пользователя из системы"""
