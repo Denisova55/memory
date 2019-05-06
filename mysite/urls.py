@@ -10,5 +10,7 @@ urlpatterns = [
     url(r'^logout/$', v.log_out, name='logout'),
     url(r'^create_new_post/$', v.create_new_post, name='create_new_post'),
     url(r'^registration/$', v.registration, name='registration'),
+    url(r'^persons_list/$', v.persons_list, name='persons_list'),
+    url(r'^random_post/$', v.random_post, name='random_post')
 
 ]

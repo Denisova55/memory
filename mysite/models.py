@@ -20,7 +20,7 @@ class Post(models.Model):
     )
     star = models.BooleanField(verbose_name="Настройка поста", choices=CHOICE_TO_STAR, default=False)
     date_pub = models.DateTimeField(verbose_name="Дата публикации", auto_now_add=True)
-    date_modified = models.DateTimeField(verbose_name= "Последнее изменение", auto_now=True)
+    date_modified = models.DateTimeField(verbose_name="Последнее изменение", auto_now=True)
     pictures = models.CharField(verbose_name="Ссылка на картинку", max_length=500, blank=True)
 
     class Meta:

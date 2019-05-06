@@ -1,0 +1,35 @@
+{% extends 'mysite/base_page.html' %}
+{% load staticfiles %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/post.css' %}">
+{% endblock %}
+
+{% block title %}
+  Random post
+{% endblock %}
+
+{% block content %}
+{% comment %} <h1 class="mb-5">{{random_object}}</h1>
+<p>Создано: {{random_object.date_pub}}</p>
+<p>Последнее редактирование: {{random_object.date_modified}}</p> {% endcomment %}
+<aside class="post">
+  <section class="post__img">
+    <i class="fas fa-user-circle"></i>
+  </section>
+  <section class="post__info">
+    <h3>{{ random_object }}</h3>
+    <p class="post__prev">{{ random_object.get_preview }}</p>
+    <hr>
+    <div class="post__nav">
+      <div class="post__addition">
+        <span>Автор: {{random_object.name}} {{ random_object.second_name }}</span></br>
+        <span>Последнее редактирование: {{ random_object.date_modified }}</span>
+      </div>
+    </div>
+  </section>
+  <section class="post__text">
+    {{ random_object.text_post_markdown }}
+  </section>
+</aside>
+{% endblock %}

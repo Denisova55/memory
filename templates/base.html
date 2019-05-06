@@ -24,10 +24,10 @@
           <a class="link" href="{% url 'posts_list' %}">Главная</a>
         </li>
         <li>
-          <a class="link" href="{% url 'posts_list' %}">Личности</a>
+          <a class="link" href="{% url 'persons_list' %}">Личности</a>
         </li>
         <li>
-          <a class="link" href="{% url 'posts_list' %}">Случайный пост</a>
+          <a class="link" href="{% url 'random_post' %}">Случайный пост</a>
         </li>
         
         {% if user.is_authenticated %}

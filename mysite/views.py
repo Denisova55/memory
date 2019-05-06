@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import *
 from .forms import *
@@ -5,13 +6,12 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib import auth
-# from django.contrib.auth.forms import UserCreationForm
 
 
 def posts_list(request):
     """Страница со списком всех постов"""
     posts = Post.objects.all()
-    paginator= Paginator(posts, 1)
+    paginator = Paginator(posts, 1)
     page = request.GET.get('page')
     try:
         posts = paginator.page(page)
@@ -42,6 +42,27 @@ def create_new_post(request):
     else:
         post_form = PostForm()
         return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
+
+
+def persons_list(request):
+    """Лист с персональнымии постами"""
+    all_posts = Post.objects.filter(star__exact="True")
+    paginator = Paginator(all_posts, 1)
+    page = request.GET.get('page')
+    try:
+        all_posts = paginator.page(page)
+    except PageNotAnInteger:
+        all_posts = paginator.page(1)
+    except EmptyPage:
+        all_posts = paginator.page(paginator.num_pages)
+    return render(request, 'mysite/persons_list.html', context={'all_posts': all_posts, 'page': page})
+
+
+def random_post(request):
+    """Рандомный пост"""
+    items = Post.objects.all()
+    random_item = random.choice(items)
+    return render(request, 'mysite/random_post.html', context={'random_object': random_item})
 
 
 def registration(request):
