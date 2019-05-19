@@ -1,43 +1,44 @@
 {% extends 'mysite/base_page.html' %}
+{% load staticfiles %}
 
 {% block title %}
-    Log in - {{ block.super }}
+  Вход
 {% endblock %}
 
-
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="content">
-        <div class="section-inner clearfix">
+  <div class="login">
+    <h3>Вход</h3>
 
-        <h3>Login Form</h3>
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
 
-        {% if messages %}
-            <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-
-        <form action="" method="post">
-            {% csrf_token %}
-            <table>
-                <tr>
-                    <td><label for="id_username">Enter you`re name</label></td>
-                    <td><input type="text" id="id_username" name="username"></td>
-                </tr>
-                <tr>
-                    <td><label for="id_username">Enter password</label></td>
-                    <td><input type="password" id="id_password" name="password"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Submit"></td>
-                </tr>
-            </table>
-        </form>
-
-        </div>
-    </div>
+    <form action="" method="post">
+      {% csrf_token %}
+      <table>
+        <tr>
+          <td><label for="id_username">Username:</label></td>
+          <td><input type="text" id="id_username" name="username"></td>
+        </tr>
+        <tr>
+          <td><label for="id_username">Пароль:</label></td>
+          <td><input type="password" id="id_password" name="password"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><input type="submit" value="Войти"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
 {% endblock %}
