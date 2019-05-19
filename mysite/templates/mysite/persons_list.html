@@ -13,46 +13,46 @@
 {% block content %}
 {% for post in all_posts %}
 <aside class="post">
-      <section class="post__img">
-        <i class="fas fa-user-circle"></i>
-      </section>
-      <section class="post__info">
-        <h3>{{ post }}</h3>
-        <p class="post__prev">{{ post.get_preview }}</p>
-        <hr>
-        <div class="post__nav">
-          <div class="post__addition">
-            <span>Автор: {{post.name}} {{post.second_name}}</span></br>
-            <span>Последнее редактирование: {{ post.date_modified }}</span>
-          </div>
-          <a class="btn" href="{% url 'post_detail' post.id%}">Читать</a>
-        </div>
-      </section>
-    </aside>
-  {% endfor %}
+  <section class="post__img">
+    <i class="fas fa-user-circle"></i>
+  </section>
+  <section class="post__info">
+    <h3>{{ post }}</h3>
+    <p class="post__prev">{{ post.get_preview }}</p>
+    <hr>
+    <div class="post__nav">
+      <div class="post__addition">
+        <span>Автор: {{post.name}} {{post.second_name}}</span></br>
+        <span>Последнее редактирование: {{ post.date_modified }}</span>
+      </div>
+      <a class="btn" href="{% url 'post_detail' post.id%}">Читать</a>
+    </div>
+  </section>
+</aside>
+{% endfor %}
 
 <nav class="pagination__wrap">
-    <ul class="pagination">
-      {% if all_posts.has_previous %}
-        <li class="page-item"><a class="page-link" href="?page=1">Далее</a></li>
-      {% else %}
-        <li class="page-item disabled"><a class="page-link">Назад</a></li>
-      {% endif %}
+  <ul class="pagination">
+    {% if all_posts.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1">Далее</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link">Назад</a></li>
+    {% endif %}
 
-      <li class="page-item active" aria-current="page">
-        <span class="page-link">
-          Страница {{ all_posts.number }} из {{ all_posts.paginator.num_pages }}
-        </span>
+    <li class="page-item active" aria-current="page">
+      <span class="page-link">
+        Страница {{ all_posts.number }} из {{ all_posts.paginator.num_pages }}
+      </span>
+    </li>
+
+    {% if all_posts.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ all_posts.next_page_number }}">Далее</a>
       </li>
-
-      {% if all_postss.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{ posts.next_page_number }}">Далее</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled"><a class="page-link">Далее</a></li>
-      {% endif %}
-    </ul>
-  </nav>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link">Далее</a></li>
+    {% endif %}
+  </ul>
+</nav>
 
 {% endblock %}
