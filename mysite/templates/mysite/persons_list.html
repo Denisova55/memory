@@ -13,6 +13,12 @@
 {% block content %}
 {% for post in all_posts %}
 <aside class="post">
+  {% if post.star%}
+  <div class="markstar">
+    <i class="fas fa-star"></i>
+  </div>
+  {% endif %}
+
   <section class="post__img">
     <i class="fas fa-user-circle"></i>
   </section>
