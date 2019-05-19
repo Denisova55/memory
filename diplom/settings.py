@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mysite',
     'markdownx',
+    'django-dia'
 ]
 
 
