@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib import auth
+import nltk
 
 
 def posts_list(request):
@@ -36,12 +37,31 @@ def create_new_post(request):
             post = post_form.save(commit=False)
             post.name = request.user
             post.save()
+            tokenise(request, post_id=post.id)
             return redirect('post_detail', post_id=post.id)
         else:
             return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
     else:
         post_form = PostForm()
         return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
+
+
+def tokenise(request, post_id):
+    """Токенизация"""
+    post = get_object_or_404(Post, id=post_id)
+    tokens = nltk.WordPunctTokenizer().tokenize(post.text_post)
+    stop_words = list(StopWords.objects.all())
+    clean_tokens = []
+    for token in tokens:
+        if token not in stop_words:
+            clean_tokens.append(token)
+    link_words = list(LinkWord.objects.all())
+    basic_words = []
+    for word in clean_tokens:
+        if word in link_words:
+            basic_word = BasicWord.objects.filter(link_word__link_word=word)
+            basic_words.append(basic_word)
+    return render(request, 'mysite/post_detail.html', context={'basic_words': basic_words})
 
 
 def persons_list(request):

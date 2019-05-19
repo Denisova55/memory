@@ -40,3 +40,27 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class StopWords(models.Model):
+    stop_word = models.TextField(verbose_name="Стоп слова", blank=True, db_index=True)
+
+    def __str__(self):
+        return self.stop_word
+
+
+class LinkWord(models.Model):
+    link_word = models.CharField(max_length=500, blank=True, db_index=True)
+
+    def __str__(self):
+        return self.link_word
+
+
+class BasicWord(models.Model):
+    basic_word = models.ForeignKey(LinkWord, on_delete=models.CASCADE, blank=True, db_index=True,
+                                   related_name='basic_word')
+
+    def __str__(self):
+        return self.basic_word
+
+

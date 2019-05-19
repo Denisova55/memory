@@ -29,7 +29,10 @@
     </div>
   </section>
   <section class="post__text">
-    {{ post.text_post_markdown }}
+    {{ post.text_post_markdown|safe }}
   </section>
+  <li>
+    {% for basic_word in basic_words %}{{basic_word}}{% endfor %}
+  </li>
 </aside>
 {% endblock %}

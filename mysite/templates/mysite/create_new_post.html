@@ -7,6 +7,11 @@
 {% block content %}
 
 <h1>Создание поста</h1>
+{% if user.post %}
+<h1>You are have post</h1>
+{% else %}
+<h1>Create new Post</h1>
+
 <form action="." method="POST" class="post-form">
  {% csrf_token %}
     {{ post_form.errors }}
@@ -31,5 +36,5 @@
 
     <button type="submit" class="btn btn-dark">Создать</button>
 </form>
-
+{% endif %}
 {% endblock %}

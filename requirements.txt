@@ -2,3 +2,5 @@ Django~=2.1.7
 Markdown==3.0.1
 django-markdownx==2.0.28
 django-dia==0.4.1
+nltk==3.4.1
+
