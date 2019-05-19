@@ -15,28 +15,30 @@
   {% include "./post.html" %} 
 {% endfor %}
 
-<nav class="pagination__wrap">
-  <ul class="pagination">
-    {% if all_posts.has_previous %}
-      <li class="page-item"><a class="page-link" href="?page=1">Далее</a></li>
-    {% else %}
-      <li class="page-item disabled"><a class="page-link">Назад</a></li>
-    {% endif %}
+{% if all_posts.paginator.num_pages != 1 %}
+  <nav class="pagination__wrap">
+    <ul class="pagination">
+      {% if all_posts.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">Далее</a></li>
+      {% else %}
+        <li class="page-item disabled"><a class="page-link">Назад</a></li>
+      {% endif %}
 
-    <li class="page-item active" aria-current="page">
-      <span class="page-link">
-        Страница {{ all_posts.number }} из {{ all_posts.paginator.num_pages }}
-      </span>
-    </li>
-
-    {% if all_posts.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ all_posts.next_page_number }}">Далее</a>
+      <li class="page-item active" aria-current="page">
+        <span class="page-link">
+          Страница {{ all_posts.number }} из {{ all_posts.paginator.num_pages }}
+        </span>
       </li>
-    {% else %}
-      <li class="page-item disabled"><a class="page-link">Далее</a></li>
-    {% endif %}
-  </ul>
-</nav>
+
+      {% if all_posts.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ all_posts.next_page_number }}">Далее</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><a class="page-link">Далее</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
 
 {% endblock %}
