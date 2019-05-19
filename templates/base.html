@@ -31,9 +31,11 @@
         </li>
         
         {% if user.is_authenticated %}
-          <li>
-            <a class="link" href="{% url 'create_new_post' %}">Профиль</a>
-          </li>
+          {% if user.post %}
+            <li>
+              <a class="link" href="{% url 'create_new_post' %}">Профиль</a>
+            </li>
+          {% endif %}
           <li>
             <a class="link" href="{% url 'logout' %}">Выход</a>
           </li>
