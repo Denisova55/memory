@@ -1,0 +1,35 @@
+{% load staticfiles %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/post.css' %}">
+{% endblock %}
+
+<aside class="post">
+  {% if post.star%}
+  <div class="markstar">
+    <i class="fas fa-star"></i>
+  </div>
+  {% endif %}
+
+  <section class="post__img">
+    <i class="fas fa-user-circle"></i>
+  </section>
+  <section class="post__info">
+    <h3>{{ post }}</h3>
+    <p class="post__prev">{{ post.get_preview }}</p>
+    <hr>
+    <div class="post__nav">
+      <div class="post__addition">
+        <span>Автор: {{post.name}} {{post.second_name}}</span></br>
+        <span>Последнее редактирование: {{ post.date_modified }}</span>
+      </div>
+      <a class="btnn" href="{% url 'post_detail' post.id%}">Читать</a>
+    </div>
+  </section>
+</aside>
+
+{% comment %} <h3>
+  <a href="{% url 'post_detail' post.id%}">
+    {{ post }}
+  </a>
+</h3> {% endcomment %}
