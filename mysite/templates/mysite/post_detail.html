@@ -32,7 +32,9 @@
     {{ post.text_post_markdown|safe }}
   </section>
   <li>
-    {% for basic_word in basic_words %}{{basic_word}}{% endfor %}
+    {% for basic_word in basic_words %}
+    <p>{{basic_word}}</p>
+    {% endfor %}
   </li>
 </aside>
 {% endblock %}

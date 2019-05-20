@@ -14,9 +14,17 @@ class StopWords(admin.ModelAdmin):
 
 @admin.register(LinkWord)
 class AdminLinkWord(admin.ModelAdmin):
-    list_display = ('link_word', )
+    list_display = ('word', )
+
+
+class AdminLinkWordInline(admin.StackedInline):
+    model = LinkWord.base_words.through
+    extra = 0
 
 
 @admin.register(BasicWord)
 class AdminBasicWord(admin.ModelAdmin):
-    list_display = ('basic_word', )
+    list_display = ('word', )
+    inlines = [
+        AdminLinkWordInline
+    ]

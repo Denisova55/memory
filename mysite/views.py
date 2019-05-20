@@ -1,4 +1,6 @@
 import random
+import re
+
 from django.shortcuts import render,redirect, get_object_or_404
 from .models import *
 from .forms import *
@@ -26,7 +28,9 @@ def posts_list(request):
 def post_detail(request, post_id):
     """Страница поста"""
     post = get_object_or_404(Post, id=post_id)
-    return render(request, 'mysite/post_detail.html', context={'post': post})
+    tokens = nltk.WordPunctTokenizer().tokenize(post.text_post)
+    basic_words = set(BasicWord.objects.filter(link_words__word__in=tokens))
+    return render(request, 'mysite/post_detail.html', context={'post': post, 'basic_words': basic_words})
 
 
 def create_new_post(request):
@@ -37,7 +41,6 @@ def create_new_post(request):
             post = post_form.save(commit=False)
             post.name = request.user
             post.save()
-            tokenise(request, post_id=post.id)
             return redirect('post_detail', post_id=post.id)
         else:
             return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
@@ -45,23 +48,14 @@ def create_new_post(request):
         post_form = PostForm()
         return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
 
-
-def tokenise(request, post_id):
-    """Токенизация"""
-    post = get_object_or_404(Post, id=post_id)
-    tokens = nltk.WordPunctTokenizer().tokenize(post.text_post)
-    stop_words = list(StopWords.objects.all())
-    clean_tokens = []
-    for token in tokens:
-        if token not in stop_words:
-            clean_tokens.append(token)
-    link_words = list(LinkWord.objects.all())
-    basic_words = []
-    for word in clean_tokens:
-        if word in link_words:
-            basic_word = BasicWord.objects.filter(link_word__link_word=word)
-            basic_words.append(basic_word)
-    return render(request, 'mysite/post_detail.html', context={'basic_words': basic_words})
+#
+# def tokenise(request, post_id):
+#     """Токенизация"""
+#     post = get_object_or_404(Post, id=post_id)
+#     tokens = nltk.WordPunctTokenizer().tokenize(post.text_post)
+#     print(tokens)
+#     basic_words = BasicWord.objects.filter(link_words__word_in=tokens).distinct('word')
+#     return render(request, 'mysite/post_detail.html', context={'basic_words': basic_words})
 
 
 def persons_list(request):

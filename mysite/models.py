@@ -11,7 +11,7 @@ class Post(models.Model):
     email = models.EmailField(verbose_name="email", db_index=True, blank=True)
     name = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Имя", db_index=True, blank=True)
     second_name = models.CharField(verbose_name="Фамилия", max_length=150, db_index=True, blank=True)
-    title = models.CharField(verbose_name="Заголовок", max_length=500)
+    title = models.CharField(verbose_name="Заголовок", max_length=500, blank=True)
     preview = models.CharField(verbose_name= "Тизер", max_length=500, blank=True, db_index=True)
     text_post = MarkdownxField(verbose_name= "Текст поста", blank=True, db_index=True)
     CHOICE_TO_STAR = (
@@ -49,18 +49,16 @@ class StopWords(models.Model):
         return self.stop_word
 
 
-class LinkWord(models.Model):
-    link_word = models.CharField(max_length=500, blank=True, db_index=True)
-
-    def __str__(self):
-        return self.link_word
-
-
 class BasicWord(models.Model):
-    basic_word = models.ForeignKey(LinkWord, on_delete=models.CASCADE, blank=True, db_index=True,
-                                   related_name='basic_word')
+    word = models.CharField(max_length=500, blank=True, db_index=True)
 
     def __str__(self):
-        return self.basic_word
+        return self.word
 
 
+class LinkWord(models.Model):
+    base_words = models.ManyToManyField(BasicWord, max_length=500, blank=True, db_index=True, related_name='link_words')
+    word = models.CharField(max_length=500, blank=True, db_index=True, unique=True)
+
+    def __str__(self):
+        return self.word

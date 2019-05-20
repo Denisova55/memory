@@ -1,3 +1,5 @@
+import re
+
 from django import forms
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
@@ -7,6 +9,15 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'preview', 'text_post', 'pictures', )
+
+    def clean_text_post(self):
+        value = self.cleaned_data.get('text_post')
+        if value is not None:
+            words = StopWords.objects.values_list('stop_word', flat=True)
+            escape_words = (re.escape(w) for w in words)
+            pattern = ('|'.join(escape_words))
+            value = re.sub(pattern, ' ', value)
+        return value
 
 
 class UserCreationForm(UserCreationForm):
