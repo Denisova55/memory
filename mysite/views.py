@@ -48,15 +48,6 @@ def create_new_post(request):
         post_form = PostForm()
         return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
 
-#
-# def tokenise(request, post_id):
-#     """Токенизация"""
-#     post = get_object_or_404(Post, id=post_id)
-#     tokens = nltk.WordPunctTokenizer().tokenize(post.text_post)
-#     print(tokens)
-#     basic_words = BasicWord.objects.filter(link_words__word_in=tokens).distinct('word')
-#     return render(request, 'mysite/post_detail.html', context={'basic_words': basic_words})
-
 
 def persons_list(request):
     """Лист с персональнымии постами"""

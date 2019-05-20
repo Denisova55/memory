@@ -7,9 +7,12 @@
 {% block content %}
 
 <h1>Создание поста</h1>
-{% if user.post %}
+
+{% if user.post_set %}
 <h1>You are have post</h1>
-{% else %}
+
+{% elif user.is_authenticated %}
+
 <h1>Create new Post</h1>
 
 <form action="." method="POST" class="post-form">
