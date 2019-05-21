@@ -31,10 +31,12 @@
   <section class="post__text">
     {{ post.text_post_markdown|safe }}
   </section>
-  <li>
+  <section class="post__tags">
+    <ul>
     {% for basic_word in basic_words %}
-    <p>{{basic_word}}</p>
+      <li>{{basic_word}}</li>
     {% endfor %}
-  </li>
+    </ul>
+  </section>
 </aside>
 {% endblock %}
