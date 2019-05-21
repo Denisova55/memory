@@ -44,7 +44,8 @@
           <li>
             <a class="link" href="{% url 'logout' %}">Выход</a>
           </li>
-              {% elif not user.post_set %}
+              {% elif user.is_authenticated and not user.post_set%}
+
             <li>
               <a class="link" href="{% url 'create_new_post' %}">Профиль</a>
             </li>
