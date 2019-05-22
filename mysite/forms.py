@@ -21,12 +21,12 @@ class PostForm(forms.ModelForm):
 
 
 class UserCreationForm(UserCreationForm):
-    city = forms.CharField(label="City", max_length=50, required=True)
-    country = forms.CharField(label="Country", max_length=100, required=True)
-    first_name = forms.CharField(label="First name", max_length=50, required=True)
-    second_name = forms.CharField(label="Second name", max_length=50, required=True)
-    age = forms.CharField(label="Age", max_length=3, required=True)
-    contacts = forms.CharField(label="Contacs", max_length=200, required=False)
+    city = forms.CharField(label="Город", max_length=50, required=True)
+    country = forms.CharField(label="Страна", max_length=100, required=True)
+    first_name = forms.CharField(label="Имя", max_length=50, required=True)
+    second_name = forms.CharField(label="Фамилия", max_length=50, required=True)
+    age = forms.CharField(label="Возраст", max_length=3, required=True)
+    contacts = forms.CharField(label="Контакты", max_length=200, required=False)
 
     class Meta:
         model = User
