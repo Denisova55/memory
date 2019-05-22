@@ -43,6 +43,7 @@ def create_new_post(request):
             post.save()
             user = request.user
             user.is_active = False
+            user.save()
             return redirect('post_detail', post_id=post.id)
         else:
             return render(request, 'mysite/create_new_post.html', context={'post_form': post_form})
