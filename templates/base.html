@@ -44,10 +44,11 @@
           <li>
             <a class="link" href="{% url 'logout' %}">Выход</a>
           </li>
-              {% elif user.is_authenticated and not user.post_set%}
-
+        {% endif%}
             <li>
-              <a class="link" href="">У вас есть пост</a>
+              {% if user.is_active %}
+
+              <a class="link" href="{% url 'create_new_post' %}">Создать пост</a>
             </li>
             {% endif %}
       </ul>

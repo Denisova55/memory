@@ -8,10 +8,10 @@
 
 <h1>Создание поста</h1>
 
-{% if user.post_set %}
-<h1>You are have post</h1>
+{% if not user.is_active %}
+<h1>У вас уже есть пост</h1>
 
-{% elif user.is_authenticated %}
+{% elif user.is_active %}
 
 <h1>Create new Post</h1>
 
