@@ -77,7 +77,7 @@ def registration(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Аккаунт создан успешно')
-            return redirect('mysite/posts_list.html')
+            return redirect('posts_list')
     else:
         form = UserCreationForm()
     return render(request, 'mysite/registration.html', {'form': form})
